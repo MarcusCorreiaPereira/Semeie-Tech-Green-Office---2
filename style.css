@@ -1,0 +1,298 @@
+/* ==========================================================================
+   VARIÁVEIS DE CONFIGURAÇÃO (:ROOT)
+   ========================================================================== */
+:root {
+  --header-height: 100px;
+  --navMenu-height: 50px;
+  --img-largest: 400px;
+  --bg-color: #efe1c8;
+  --surface-color: #e4d7c2;
+  --nav-color: #e8d9c0;
+  --nav-border: #f1e3ca;
+  --text-dark: #060606;
+}
+
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS (BODY & MAIN)
+   ========================================================================== */
+body {
+  background-color: var(--bg-color);
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 101vh;
+  margin: 0;
+  padding-top: calc(var(--header-height) + var(--navMenu-height));
+  color: var(--text-dark);
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+header {
+  background-color: var(--surface-color);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1001; /* Fica acima do menu nav */
+}
+
+.headerImg {
+  height: calc(var(--header-height) * 0.8);
+  padding-left: 15px;
+}
+
+.headerImg:hover {
+  cursor: pointer;
+}
+
+.headerText {
+  font-size: 40px;
+  padding-left: 16px;
+  font-family: Courier, monospace;
+  margin: 0;
+}
+
+/* ==========================================================================
+   MENU DE NAVEGAÇÃO
+   ========================================================================== */
+#navMenu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--header-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--nav-color);
+  border-bottom: 1px solid var(--nav-border);
+  width: 100%;
+  height: var(--navMenu-height);
+  z-index: 1000;
+}
+
+#navMenu a {
+  display: flex;
+  padding: 0 16px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 26px;
+  font-weight: bold;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+#navMenu a:hover {
+  background-color: var(--surface-color);
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DAS SEÇÕES (Abas Dinâmicas)
+   ========================================================================== */
+section {
+  display: none; /* Escondido por padrão */
+  width: 100%;
+  max-width: 1200px; /* Limita a largura em telas ultra-wides */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0 60px 0;
+  box-sizing: border-box;
+}
+
+/* Quando a seção tiver a classe .active ou receber display pelo JS inline */
+section.active {
+  display: flex;
+}
+
+/* ==========================================================================
+   CLASSES UTILITÁRIAS DE LAYOUT (Flexbox)
+   ========================================================================== */
+.f {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Cria um espaçamento saudável entre texto e imagem */
+}
+
+.fV {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   BLOCOS DE CONTEÚDO (Containers, Textos e Mídias)
+   ========================================================================== */
+.contentBox {
+  margin: 30px 0;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.contentBoxImg, .contentBoxImgV {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentImgH, .contentImgV, .contentVideo {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px; /* Cantos levemente arredondados para um design moderno */
+}
+
+.contentImgH, .contentVideo {
+  width: var(--img-largest);
+}
+
+.contentImgV {
+  height: var(--img-largest);
+}
+
+.contentBoxText {
+  flex: 2;
+  width: 100%;
+}
+
+.contentTitle {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 16px 0;
+  width: 100%;
+  color: #1a331e; /* Um tom verde escuro para combinar com Semeie Tech */
+}
+
+.contentParagraph {
+  font-size: 22px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  width: 100%;
+  text-align: justify;
+}
+
+.contentReferences {
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+/* ==========================================================================
+   FOOTER (Rodapé)
+   ========================================================================== */
+footer {
+  background-color: var(--nav-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   MEDIA QUERY: DISPOSITIVOS MÓVEIS E TABLETS (Até 910px)
+   ========================================================================== */
+@media screen and (max-width: 910px) {
+  body {
+    /* Compensação para o menu que agora empilha verticalmente */
+    padding-top: calc(var(--header-height) + 160px); 
+  }
+
+  .headerText {
+    font-size: 30px;
+  }
+
+  .headerImg {
+    height: calc(var(--header-height) * 0.6);
+  }
+
+  #navMenu {
+    flex-direction: column;
+    height: auto;
+    top: var(--header-height);
+  }
+
+  #navMenu a {
+    font-size: 18px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--nav-border);
+  }
+
+  /* Transforma layouts horizontais em verticais empilhados */
+  .f {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contentBox {
+    width: 95%;
+    margin: 15px 0;
+  }
+
+  .contentTitle {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .contentParagraph {
+    font-size: 18px;
+    text-align: left; /* Melhor leitura em telas menores */
+  }
+
+  .contentImgH, .contentImgV, .contentVideo {
+    max-width: 80%;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   MEDIA QUERY: TELAS MUITO PEQUENAS (Até 350px)
+   ========================================================================== */
+@media screen and (max-width: 350px) {
+  body {
+    padding-top: calc(var(--header-height) + 190px);
+  }
+
+  .headerText {
+    font-size: 22px;
+  }
+
+  #navMenu a {
+    font-size: 15px;
+    padding: 8px 0;
+  }
+
+  .contentTitle {
+    font-size: 22px;
+  }
+
+  .contentParagraph {
+    font-size: 16px;
+  }
+
+  .contentImgH, .contentImgV, .contentVideo {
+    max-width: 100%;
+  }
+}
